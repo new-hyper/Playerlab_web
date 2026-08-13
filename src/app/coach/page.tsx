@@ -35,7 +35,7 @@ export default async function Coach() {
           <div className="note rv">
             <em>NOTE</em>
             <span>
-              <b>열 개 분야를 다 받는 것이 아닙니다.</b> 검진에서 개선필요
+              <b>{coaches.length}개 분야를 다 받는 것이 아닙니다.</b> 검진에서 개선필요
               판정이 나온 1~3개 항목만 처방합니다. 나머지 시간은 소속팀 훈련과
               회복에 씁니다. 강사 분야는 진단 데이터가 쌓이는 대로 계속
               늘어납니다.

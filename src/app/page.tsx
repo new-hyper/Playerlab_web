@@ -13,7 +13,7 @@ const SERVICES = [
   {
     href: "/about",
     tag: "01 · ABOUT",
-    title: "플레이어랩 소2개",
+    title: "플레이어랩 소개",
     desc: "왜 진단부터 하는지, 우리가 하지 않는 것은 무엇인지 밝힙니다.",
   },
   {

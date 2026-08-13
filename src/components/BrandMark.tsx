@@ -1,7 +1,12 @@
-export default function BrandMark() {
+export default function BrandMark({ large = false }: { large?: boolean }) {
   return (
     <>
-      <svg className="mk" viewBox="0 0 32 34" fill="none" aria-hidden="true">
+      <svg
+        className={large ? "mk mk--lg" : "mk"}
+        viewBox="0 0 32 34"
+        fill="none"
+        aria-hidden="true"
+      >
         <defs>
           <linearGradient
             id="cga"
