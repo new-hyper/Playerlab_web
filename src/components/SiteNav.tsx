@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import BrandMark from "./BrandMark";
 
 const MENU = [
-  { href: "/about", label: "플레이어랩 소112231개", no: "01" },
+  { href: "/about", label: "플레이어랩 소개", no: "01" },
   { href: "/scan", label: "선수진단", no: "02" },
   { href: "/process", label: "진행 절차", no: "03" },
   { href: "/coach", label: "전문 강사진", no: "04" },
