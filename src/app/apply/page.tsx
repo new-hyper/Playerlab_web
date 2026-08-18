@@ -6,8 +6,9 @@ export const metadata = {
   title: "무료 선수진단 신청 — 고다지 풋볼 플레이어 랩",
 };
 
-// 문진은 구글폼으로 받는다. 폼을 만든 뒤 여기에 주소를 넣으면 버튼이 살아난다.
-const GOOGLE_FORM_URL = "";
+// 문진은 구글폼으로 받는다. 폼 문항을 고칠 일이 있으면 구글 폼에서 하고 이 주소는 그대로 둔다.
+const GOOGLE_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeFGyAs-TSNeqrp21P1iMQd_i18H5LBquMl7QUtHO2B9fEh2Q/viewform";
 
 const SECTIONS = [
   {
