@@ -20,7 +20,9 @@ export default function RevealOnScroll() {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -30px" },
+      // threshold 는 0 이어야 한다. 비율을 요구하면 뷰포트보다 10배 이상 긴 요소는
+      // 아무리 스크롤해도 그 비율에 닿지 못해 영영 나타나지 않는다. (모바일 결과지)
+      { threshold: 0, rootMargin: "0px 0px -30px" },
     );
 
     document
