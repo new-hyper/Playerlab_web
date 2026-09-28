@@ -10,3 +10,15 @@ export function parseLoginId(input: string): string | null {
 export function toAuthEmail(loginId: string): string {
   return `${loginId}@${AUTH_EMAIL_DOMAIN}`;
 }
+
+/** Auth 가짜 메일에서 화면용 아이디를 다시 꺼낸다. */
+export function loginIdFromAuthEmail(email: string | undefined | null): string {
+  if (!email) return "";
+  const suffix = `@${AUTH_EMAIL_DOMAIN}`;
+  const lower = email.toLowerCase();
+  if (lower.endsWith(suffix)) {
+    return lower.slice(0, -suffix.length);
+  }
+  const at = lower.indexOf("@");
+  return at === -1 ? lower : lower.slice(0, at);
+}
