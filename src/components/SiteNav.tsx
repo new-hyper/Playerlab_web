@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import BrandMark from "./BrandMark";
+import AuthNav from "./AuthNav";
 
 const MENU = [
   { href: "/about", label: "플레이어랩 소개", no: "01" },
@@ -43,6 +44,7 @@ export default function SiteNav() {
               </Link>
             ))}
           </div>
+          <AuthNav />
           <Link href="/apply" className="btn btn--mint">
             무료 선수진단
           </Link>
@@ -112,6 +114,7 @@ export default function SiteNav() {
           </Link>
         </nav>
         <div className="drawer__cta">
+          <AuthNav onNavigate={() => setOpen(false)} />
           <Link
             href="/apply"
             className="btn btn--mint"

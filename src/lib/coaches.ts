@@ -1,4 +1,4 @@
-import { supabase } from "./supabase";
+import { createServerSupabase } from "@/lib/supabase/server";
 import type { Coach } from "@/types/coach";
 
 /** DB 컬럼은 snake_case, 화면에서 쓰는 모델은 camelCase 라서 여기서 한 번 변환한다. */
@@ -46,6 +46,7 @@ function toCoach(row: CoachRow): Coach {
 }
 
 export async function getCoaches(): Promise<Coach[]> {
+  const supabase = await createServerSupabase();
   const { data, error } = await supabase
     .from("coaches")
     .select(COLUMNS)
