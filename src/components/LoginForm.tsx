@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 import { authErrorMessage } from "@/lib/auth-errors";
-import { toE164 } from "@/lib/phone";
+import { parseLoginId, toAuthEmail } from "@/lib/auth-login-id";
 import { createBrowserSupabase } from "@/lib/supabase/client";
 
 export default function LoginForm() {
   const router = useRouter();
-  const [phone, setPhone] = useState("");
+  const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -19,16 +19,16 @@ export default function LoginForm() {
     event.preventDefault();
     setError(null);
 
-    const parsed = toE164(phone);
+    const parsed = parseLoginId(loginId);
     if (!parsed) {
-      setError("휴대전화 번호를 확인해 주세요. 예: 010-1234-5678");
+      setError("아이디는 영문·숫자 4~20자입니다.");
       return;
     }
 
     setBusy(true);
     const supabase = createBrowserSupabase();
     const { error: loginError } = await supabase.auth.signInWithPassword({
-      phone: parsed,
+      email: toAuthEmail(parsed),
       password,
     });
     setBusy(false);
@@ -45,15 +45,15 @@ export default function LoginForm() {
   return (
     <form className="form" onSubmit={onSubmit} style={{ marginTop: 0 }}>
       <div className="fld" style={{ marginTop: 0 }}>
-        <label htmlFor="login-phone">전화번호</label>
+        <label htmlFor="login-login-id">아이디</label>
         <input
-          id="login-phone"
-          type="tel"
-          inputMode="tel"
-          autoComplete="tel"
-          placeholder="010-1234-5678"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          id="login-login-id"
+          type="text"
+          autoComplete="username"
+          autoCapitalize="none"
+          spellCheck={false}
+          value={loginId}
+          onChange={(e) => setLoginId(e.target.value)}
           required
         />
       </div>

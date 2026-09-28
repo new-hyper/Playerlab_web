@@ -21,12 +21,12 @@ export default async function LoginPage() {
         crumb="ACCOUNT · 로그인"
         title={
           <>
-            전화번호로
+            아이디로
             <br />
             로그인합니다
           </>
         }
-        lead="가입할 때 정하신 비밀번호를 입력하세요. 로그인하면 홈으로 이동합니다."
+        lead="가입할 때 정하신 아이디와 비밀번호를 입력하세요. 로그인하면 홈으로 이동합니다."
       />
       <section className="sec">
         <div className="wrap wrap--n">

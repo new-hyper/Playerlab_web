@@ -12,27 +12,25 @@ import { createBrowserSupabase } from "@/lib/supabase/client";
  */
 export default function AuthNav({ onNavigate }: { onNavigate?: () => void }) {
   const router = useRouter();
-  const [phone, setPhone] = useState<string | null | undefined>(undefined);
+  const [signedIn, setSignedIn] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
     const supabase = createBrowserSupabase();
 
-    function applyUser(userPhone: string | undefined) {
-      setPhone(userPhone ?? null);
-    }
-
     supabase.auth.getUser().then(({ data }) => {
-      applyUser(data.user?.phone);
+      setSignedIn(Boolean(data.user));
     });
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      applyUser(session?.user.phone);
+      setSignedIn(Boolean(session?.user));
     });
 
     return () => subscription.unsubscribe();
   }, []);
+
+  const chipStyle = { minWidth: 86 };
 
   async function logout() {
     const supabase = createBrowserSupabase();
@@ -42,20 +40,29 @@ export default function AuthNav({ onNavigate }: { onNavigate?: () => void }) {
     router.refresh();
   }
 
-  if (phone === undefined) {
+  if (signedIn === undefined) {
     return null;
   }
 
-  if (phone) {
+  if (signedIn) {
     return (
-      <button className="btn btn--ghost" type="button" onClick={logout}>
+      <button
+        className="btn btn--ghost"
+        type="button"
+        onClick={logout}
+        style={{
+          ...chipStyle,
+          background: "#C9D4E3",
+          color: "var(--mintd)",
+        }}
+      >
         로그아웃
       </button>
     );
   }
 
   return (
-    <Link href="/login" className="btn btn--ghost" onClick={onNavigate}>
+    <Link href="/login" className="btn btn--ghost" onClick={onNavigate} style={chipStyle}>
       로그인
     </Link>
   );
