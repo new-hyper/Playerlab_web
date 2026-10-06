@@ -46,18 +46,23 @@ export default function AuthNav({ onNavigate }: { onNavigate?: () => void }) {
 
   if (signedIn) {
     return (
-      <button
-        className="btn btn--ghost"
-        type="button"
-        onClick={logout}
-        style={{
-          ...chipStyle,
-          background: "#C9D4E3",
-          color: "var(--mintd)",
-        }}
-      >
-        로그아웃
-      </button>
+      <>
+        <Link href="/mypage" className="btn btn--ghost" onClick={onNavigate}>
+          마이페이지
+        </Link>
+        <button
+          className="btn btn--ghost"
+          type="button"
+          onClick={logout}
+          style={{
+            ...chipStyle,
+            background: "#C9D4E3",
+            color: "var(--mintd)",
+          }}
+        >
+          로그아웃
+        </button>
+      </>
     );
   }
 
